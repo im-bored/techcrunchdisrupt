@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Main</title>
+
+<!--my stylesheet-->
+<link rel="stylesheet" href="login/index.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+<!--Google fonts-->
+<link href='https://fonts.googleapis.com/css?family=Roboto:300,100,400' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+<!--jQuery CDN-->
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script>
+     $(document).ready( function() {
+        var username = 'liv';
+        var firebase = new Firebase('https://imboredtc.firebaseio.com/');
+        firebase.child(username).once('value', function(snapshot) {
+          var user = snapshot.val();
+          $('#user').append('<h2>'+username+'</h2>');
+        });
+
+       $( "#myonoffswitch" ).click(function() {
+            if(document.getElementById("myonoffswitch").checked){
+                document.getElementById("status").innerHTML="is bored.";
+                firebase.child(username).update({bored:true});
+                $('#nextButton').show();
+            }
+            else{
+                document.getElementById("status").innerHTML="is not bored.";
+                firebase.child(username).update({bored:false});
+                                $('#nextButton').hide();
+
+            }
+        });
+
+       $('#nextButton').click(function() {
+        window.location.href = "file:///Users/OliviaJohnston/Documents/login/friends.html";
+       });
+      });
+
+</script>
+
+
+
+
+</head>
+
+<body>
+
+<div id="main">
+
+        <div id = "user">
+          
+        </div>
+        <div id = "bored">
+                <h1 id="status"> is not bored.</h1>
+        </div>
+
+        <!--PRETTY TOGGLE-->
+        <div id= "switch-container">
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
+                    <label class="onoffswitch-label" for="myonoffswitch"></label>
+                </div>
+        </div>
+
+        <div id="nextButton" style="display:none;"><i class="fa fa-chevron-right" style="font-size: 29px;color: black;margin-top: 48px;font-weight: 100;"></i></div>
+
+</div>
+</div>
+
+
+</body>
+
+
+</html>

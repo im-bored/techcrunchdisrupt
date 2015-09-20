@@ -1,1 +1,174 @@
-Hello World
+<html>
+<head>
+	<script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<style>
+
+body{
+	background-image: url('http://demiancasey.com/wp-content/uploads/2013/11/gray-gradient.jpg');
+	background-size: 100% 200%;
+	
+}
+
+img{
+	width: 215px;
+}
+
+.login{
+	text-align: center;
+	border-radius: 20px;
+}
+
+input[type=text], [type=password]{
+	width: 215px;
+	font-family: 'Abel', sans-serif;
+	border: none;
+	border-radius: 25px;
+	height: 30px;
+	text-align: center;
+	color: #5E5E5E;
+
+}
+input[type=submit]{
+	margin: 10px;
+	width: 215px;
+	border-radius: 25px;
+	height: 30px;
+	border: none;
+	color: white;
+	font-family: 'Abel', sans-serif;
+	background-image: url('http://www.psdgraphics.com/file/fresh-green-blur.jpg');
+	background-size: cover;
+
+}
+
+.AccCreate{
+	font-size: 15px;
+	color: #6b6b6b;
+	font-family: 'Abel', sans-serif;
+}
+
+a{
+	color: #1A912C;
+}
+
+.usernamepasslogin{
+	margin: 5px;
+}
+
+</style>
+
+</head>
+<body>
+	<br><br><br><br><br><br>
+	<p align = "center"><img src = "http://oi59.tinypic.com/28jh8hs.jpg"></img</p>
+		<div class = 'login'>
+		<div class= 'usernamepasslogin'><input type='text' id="userLogin" name='login' value='' placeholder="Username"></div>
+		<div class= 'usernamepasslogin'><input type='password' id = "userPass" name='password' value='' placeholder="Password"></div>
+		<div class='submit'><input type='submit' id = "userLoginButton" name='commit' value='Sign In'></div>
+		<div class = "AccCreate">or <a href = "">create an account.</a></div>
+	</div>
+	<script>
+
+	$(document).ready(function(){
+		var username;
+		var password;
+		var firstname;
+		var lastname;
+		var firebase = new Firebase('https://imboredtc.firebaseio.com/');
+
+
+		//SIGN UP
+		$('#newUserSubmit').click(function (e){
+			password = $('#newUserPass').val();
+			firstname = $('#newUserFirst').val();
+			lastname = $('#newUserLast').val();
+			username = $('#newUserLogin').val();
+			firebase.child(username).once('value', function(snapshot) {
+	            if (snapshot.val() === null) {
+		            firebase.child(username);
+		            firebase.child(username).set({first:firstname, last:lastname, id: username, password:password, contacts:[], bored:false, contactNum:0});
+					window.location.href = "file:///Users/OliviaJohnston/Documents/login/switch.html";
+				} 
+	            else {
+	            	$('#userAdded').append('This user already exists. Please go sign in.');
+	            }
+	        });
+        });
+
+		//SIGN IN
+        $('#userLoginButton').click(function (e){
+        	username = $('#userLogin').val();
+        	password = $('#userPass').val();
+        	firebase.child(username).once('value', function(snapshot) {
+	            if (snapshot.val() !== null) {
+	            	userinfo = snapshot.val();
+	            	if (userinfo.password == password){
+	            		$('#userloginconfirm').append('Login Successful, ' +userinfo.first);
+	            		window.location.href = "file:///Users/OliviaJohnston/Documents/login/switch.html";
+	            		// displayContacts();
+	            	} else {
+	            		$('#userloginconfirm').append('That password is incorrect');
+	            	}
+	            } else {
+	            	$('#userloginconfirm').append('that username does not exist.');
+	            }
+	        });
+        });
+
+        //ADD CONTACT
+        $('#contactSubmit').click(function (e){
+        	var contactUser = $('#contactUser').val();
+        	var contactNumber = $('#contactNumber').val();
+        	firebase.child(contactUser).once('value', function(snapshot) {
+	            if (snapshot.val() === null) {
+	        		$('#contactConfirm').append('that user does not exist.');
+        		} else {
+        			// firebase.child(username+'/contactNum/').once('value', function(snapshot) {
+        			// 	var contactCount = snapshot.val();
+        				firebase.child(username+'/contacts/'+contactUser).update({name:contactUser, number:contactNumber});
+        			// 	contactCount += 1;
+        			// 	firebase.child(username).update({contactNum:contactCount});
+	       			// });
+	       			//displayContacts();
+        		}
+        	});
+        })
+
+        //SHOW CONTACTS
+        function displayContacts() {
+        	var contactCount;
+        	firebase.child(username).once('value', function(snapshot) {
+        		user = snapshot.val();
+        		var contactList = user.contacts;
+        		for (var contact in contactList) {
+        			console.log(contactList[contact]);
+        		}
+        	});
+        }
+    });
+
+
+
+
+
+
+
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

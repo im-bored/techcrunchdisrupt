@@ -1,0 +1,66 @@
+html {
+        background-color: #e0e0e0;
+
+}
+
+#main {
+        text-align: center;
+}
+
+#user {
+        font-size: 50px;
+}
+#user h2 {
+        font-family: 'Pacifico', cursive;
+        font-weight: 100;
+        color: black;
+        margin-bottom:5px;
+}
+
+#bored {
+        font-size: 50px;
+}
+#bored h1{
+        font-family: 'Roboto', sans-serif;
+        font-weight: 100;
+        color: black;
+        margin-top:5px;
+}
+
+
+
+/****TOGGLE****/
+.onoffswitch {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative; width: 98px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    height: 49px; padding: 0; line-height: 49px;
+    border: 2px solid #CCCCCC; border-radius: 49px;
+    background-color: #FFFFFF;
+    transition: background-color 0.3s ease-in;
+}
+.onoffswitch-label:before {
+    content: "";
+    display: block; width: 49px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 47px;
+    border: 2px solid #CCCCCC; border-radius: 49px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background-color: #49E845;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+   border-color: #49E845;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    right: 0px; 
+}

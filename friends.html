@@ -1,0 +1,128 @@
+<html>
+<head>
+
+	<!--Roboto font-->
+		<link href='https://fonts.googleapis.com/css?family=Pacifico|Roboto:400,100,300' rel='stylesheet' type='text/css'>
+
+	<!--my stylesheet-->
+    <link rel="stylesheet" href="friends.css">
+
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+	<title>friends</title>
+
+
+	<script>
+	//POP UP BOX//
+		window.document.onkeydown = function (e)
+{
+    if (!e){
+        e = event;
+    }
+    if (e.keyCode == 27){
+        lightbox_close();
+    }
+}
+
+function lightbox_open(){
+    window.scrollTo(0,0);
+    document.getElementById('light').style.display='block';
+    document.getElementById('fade').style.display='block';  
+}
+
+function lightbox_close(){
+    document.getElementById('light').style.display='none';
+    document.getElementById('fade').style.display='none';
+}
+	</script>
+
+
+
+
+</head>
+
+<body>
+
+<div data-role="page">
+	
+
+	<div id="header">
+	<a id="add-button" href="#"><i class="fa fa-plus-square fa-2x"></i></a>
+
+		<h1 id="page-title">friends</h1>
+	</div>
+
+		<div id="search-container">
+			<span id="search-icon"><i class="fa fa-search"></i></span>
+			<input type="search" id="search" placeholder="Search">
+		</div>
+
+		<center class="subtitle">Who Are Bored</center>
+		
+		<div class="friendSect">
+			<hr class="left-line">
+				<div class="friends">
+					<a href="#" onclick="lightbox_open();"class="userName">Caitlin</a>
+					
+					<span class="userIcon active"></span>
+				</div>
+		</div>
+		
+		<div class="friendSect">
+			<hr class="left-line">
+				<div class="friends">
+					<a href="#" onclick="lightbox_open();"class="userName">Zeinab</a>
+					<span class="userIcon active"></span>
+				</div>
+		</div>
+
+
+<!--lightbox-->
+		<div id="light">
+			<div class="popup-text">Notify</div>
+			<div class="popup-text bold">Caitlin</div>
+			<div class="popup-text">that you are also bored?</div>
+			<div class="button-container">
+				<button class="flat-butt no" type="button" href="#" onclick="lightbox_close();">no</button>
+				<button class="flat-butt yes" type="button" href="#" onclick="lightbox_close();">yes</button>
+			</div>
+		</div>
+		<div id="fade" onClick="lightbox_close();"></div> 
+<!-- -->
+
+
+		<center class="subtitle">Who Are Having Fun</center>
+		
+		<div class="friendSect">
+			<hr class="left-line">
+				<div class="friends">
+					<span class="userName">Tory</span>
+					<span class="userIcon inactive"></span>
+				</div>
+		</div>
+
+		<div class="friendSect">
+			<hr class="left-line">
+				<div class="friends">
+					<span class="userName">Danielle</span>
+					<span class="userIcon inactive"></span>
+				</div>
+		</div>
+
+		<div class="friendSect">
+			<hr class="left-line">
+				<div class="friends">
+					<span class="userName">Nisha</span>
+					<span class="userIcon inactive"></span>
+				</div>
+		</div>
+</div>
+
+
+	
+
+</div>
+</body>
+</html>
+
