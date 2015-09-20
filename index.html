@@ -90,7 +90,7 @@ a{
 	            if (snapshot.val() === null) {
 		            firebase.child(username);
 		            firebase.child(username).set({first:firstname, last:lastname, id: username, password:password, contacts:[], bored:false, contactNum:0});
-					window.location.href = "file:///Users/OliviaJohnston/Documents/login/switch.html";
+					window.location.href = "http://im-bored.github.io/techcrunchdisrupt/switch.html";
 				} 
 	            else {
 	            	$('#userAdded').append('This user already exists. Please go sign in.');
@@ -107,7 +107,7 @@ a{
 	            	userinfo = snapshot.val();
 	            	if (userinfo.password == password){
 	            		$('#userloginconfirm').append('Login Successful, ' +userinfo.first);
-	            		window.location.href = "file:///Users/OliviaJohnston/Documents/login/switch.html";
+	            		window.location.href = "http://im-bored.github.io/techcrunchdisrupt/switch.html";
 	            		// displayContacts();
 	            	} else {
 	            		$('#userloginconfirm').append('That password is incorrect');
